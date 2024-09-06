@@ -23,23 +23,12 @@ class PlateType(Enum):
     P96 = "corning_96_wellplate_360ul_flat"
 
 
-class Settings:
-    def __init__(
-        self,
-        tip_rack_type: TipRackType,
-        left_pipette_type: PipetteType,
-        right_pipette_type: PipetteType,
-        plate_type: PlateType,
-    ) -> None:
-        self.tip_rack_type = tip_rack_type
-        self.left_pipette_type = left_pipette_type
-        self.right_pipette_type = right_pipette_type
-        self.plate_type = plate_type
-
-
-settings = Settings(
-    tip_rack_type=TipRackType.P20,
-    left_pipette_type=PipetteType.P20,
-    right_pipette_type=PipetteType.P300,
-    plate_type=PlateType.P96,
-)
+def run(protocol: protocol_api.ProtocolContext) -> None:
+    plate = protocol.load_labware(PlateType.P96, location=1)
+    tip_rack = protocol.load_labware(TipRackType.P20, location=2)
+    left_pipette = protocol.load_instrument(
+        PipetteType.P20, mount="left", tip_racks=[tip_rack]
+    )
+    right_pipette = protocol.load_instrument(
+        PipetteType.P300, mount="right", tip_racks=[tip_rack]
+    )
