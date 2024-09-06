@@ -44,8 +44,4 @@ def run(protocol: protocol_api.ProtocolContext) -> None:
         left_pipette.aspirate(50, reservoir["A7"])
         left_pipette.dispense(50, plate[f"A{i}"])
         left_pipette.blow_out()
-    # drop tip where it was picked up
-    left_pipette.drop_tip(
-        home_after=False
-    )  # home_after=False to prevent the tip from being dropped at the trash
-    )
+    left_pipette.drop_tip(home_after=False)
