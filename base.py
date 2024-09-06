@@ -28,17 +28,16 @@ class ReservoirType(Enum):
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
-    plate = protocol.load_labware(PlateType.P96.value, location=1)
-    # tip_rack_20 = protocol.load_labware(TipRackType.P20.value, location=3)
-    tip_rack_300 = protocol.load_labware(TipRackType.P300.value, location=3)
-    # left_pipette = protocol.load_instrument(
-    #     PipetteType.P20.value, mount="left", tip_racks=[tip_rack_20]
-    # )
-    reservoir = protocol.load_labware(ReservoirType.R96.value, location=2)
-    right_pipette = protocol.load_instrument(
+    plate: protocol_api.Labware = protocol.load_labware(PlateType.P96.value, location=1)
+    tip_rack_300: protocol_api.Labware = protocol.load_labware(
+        TipRackType.P300.value, location=3
+    )
+    reservoir: protocol_api.Labware = protocol.load_labware(
+        ReservoirType.R96.value, location=2
+    )
+    right_pipette: protocol_api.InstrumentContext = protocol.load_instrument(
         PipetteType.P300.value, mount="right", tip_racks=[tip_rack_300]
     )
-
     right_pipette.pick_up_tip()
     for i in range(1, 13):
         right_pipette.aspirate(100, reservoir["A7"])
