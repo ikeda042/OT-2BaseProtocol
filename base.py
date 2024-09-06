@@ -15,8 +15,8 @@ class TipRackType(Enum):
 
 
 class PipetteType(Enum):
-    P20 = "p20_single_gen2"
-    P300 = "p300_single_gen2"
+    P20 = "p20_multi_gen2"
+    P300 = "p300_multi_gen2"
 
 
 class PlateType(Enum):
