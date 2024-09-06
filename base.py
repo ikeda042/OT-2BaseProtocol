@@ -5,7 +5,7 @@ metadata = {
     "protocolName": "Base Protocol",
     "author": "ikeda042",
     "description": "A base protocol for OpenTrons.",
-    "apiLevel": "2.19",
+    "apiLevel": "2.18",
 }
 
 
@@ -28,13 +28,13 @@ class ReservoirType(Enum):
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
-    plate = protocol.load_labware(PlateType.P96, location=1)
-    tip_rack_20 = protocol.load_labware(TipRackType.P20, location=3)
+    plate = protocol.load_labware(PlateType.P96.value, location=1)
+    tip_rack_20 = protocol.load_labware(TipRackType.P20.value, location=3)
     # tip_rack_300 = protocol.load_labware(TipRackType.P300, location=4)
     left_pipette = protocol.load_instrument(
-        PipetteType.P20, mount="left", tip_racks=[tip_rack_20]
+        PipetteType.P20.value, mount="left", tip_racks=[tip_rack_20]
     )
-    reservoir = protocol.load_labware(ReservoirType.R96, location=2)
+    reservoir = protocol.load_labware(ReservoirType.R96.value, location=2)
     # right_pipette = protocol.load_instrument(
     #     PipetteType.P300, mount="right", tip_racks=[tip_rack_300]
     # )
