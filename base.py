@@ -39,6 +39,7 @@ class Settings:
 
 settings = Settings(
     tip_rack_type=TipRackType.P20,
-    pipette_type=PipetteType.P20,
+    left_pipette_type=PipetteType.P20,
+    right_pipette_type=PipetteType.P300,
     plate_type=PlateType.P96,
 )
