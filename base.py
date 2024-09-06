@@ -29,12 +29,12 @@ class ReservoirType(Enum):
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
     plate = protocol.load_labware(PlateType.P96, location=1)
-    tip_rack_20 = protocol.load_labware(TipRackType.P20, location=2)
+    tip_rack_20 = protocol.load_labware(TipRackType.P20, location=3)
     # tip_rack_300 = protocol.load_labware(TipRackType.P300, location=4)
     left_pipette = protocol.load_instrument(
         PipetteType.P20, mount="left", tip_racks=[tip_rack_20]
     )
-    reservoir = protocol.load_labware(ReservoirType.R96, location=3)
+    reservoir = protocol.load_labware(ReservoirType.R96, location=2)
     # right_pipette = protocol.load_instrument(
     #     PipetteType.P300, mount="right", tip_racks=[tip_rack_300]
     # )
