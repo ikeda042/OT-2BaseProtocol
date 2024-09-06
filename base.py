@@ -21,3 +21,24 @@ class PipetteType(Enum):
 
 class PlateType(Enum):
     P96 = "corning_96_wellplate_360ul_flat"
+
+
+class Settings:
+    def __init__(
+        self,
+        tip_rack_type: TipRackType,
+        left_pipette_type: PipetteType,
+        right_pipette_type: PipetteType,
+        plate_type: PlateType,
+    ) -> None:
+        self.tip_rack_type = tip_rack_type
+        self.left_pipette_type = left_pipette_type
+        self.right_pipette_type = right_pipette_type
+        self.plate_type = plate_type
+
+
+settings = Settings(
+    tip_rack_type=TipRackType.P20,
+    pipette_type=PipetteType.P20,
+    plate_type=PlateType.P96,
+)
