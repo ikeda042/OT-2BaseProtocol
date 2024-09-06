@@ -29,19 +29,19 @@ class ReservoirType(Enum):
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
     plate = protocol.load_labware(PlateType.P96.value, location=1)
-    tip_rack_20 = protocol.load_labware(TipRackType.P20.value, location=3)
-    # tip_rack_300 = protocol.load_labware(TipRackType.P300, location=4)
-    left_pipette = protocol.load_instrument(
-        PipetteType.P20.value, mount="left", tip_racks=[tip_rack_20]
-    )
-    reservoir = protocol.load_labware(ReservoirType.R96.value, location=2)
-    # right_pipette = protocol.load_instrument(
-    #     PipetteType.P300, mount="right", tip_racks=[tip_rack_300]
+    # tip_rack_20 = protocol.load_labware(TipRackType.P20.value, location=3)
+    tip_rack_300 = protocol.load_labware(TipRackType.P300, location=3)
+    # left_pipette = protocol.load_instrument(
+    #     PipetteType.P20.value, mount="left", tip_racks=[tip_rack_20]
     # )
+    reservoir = protocol.load_labware(ReservoirType.R96.value, location=2)
+    right_pipette = protocol.load_instrument(
+        PipetteType.P300, mount="right", tip_racks=[tip_rack_300]
+    )
 
-    left_pipette.pick_up_tip()
+    right_pipette.pick_up_tip()
     for i in range(1, 3):
-        left_pipette.aspirate(10, reservoir["A7"])
-        left_pipette.dispense(10, plate[f"A{i}"])
-        left_pipette.blow_out()
-    left_pipette.drop_tip(home_after=False)
+        right_pipette.aspirate(10, reservoir["A7"])
+        right_pipette.dispense(10, plate[f"A{i}"])
+        right_pipette.blow_out()
+    right_pipette.drop_tip()
