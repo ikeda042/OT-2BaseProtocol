@@ -41,7 +41,7 @@ def run(protocol: protocol_api.ProtocolContext) -> None:
 
     left_pipette.pick_up_tip()
     for i in range(1, 3):
-        left_pipette.aspirate(50, reservoir["A7"])
-        left_pipette.dispense(50, plate[f"A{i}"])
+        left_pipette.aspirate(10, reservoir["A7"])
+        left_pipette.dispense(10, plate[f"A{i}"])
         left_pipette.blow_out()
     left_pipette.drop_tip(home_after=False)
