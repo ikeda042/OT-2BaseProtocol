@@ -36,7 +36,7 @@ def run(protocol: protocol_api.ProtocolContext) -> None:
     # )
     reservoir = protocol.load_labware(ReservoirType.R96.value, location=2)
     right_pipette = protocol.load_instrument(
-        PipetteType.P300, mount="right", tip_racks=[tip_rack_300]
+        PipetteType.P300.value, mount="right", tip_racks=[tip_rack_300]
     )
 
     right_pipette.pick_up_tip()
