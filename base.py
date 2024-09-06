@@ -24,7 +24,7 @@ class PlateType(Enum):
 
 
 class ReservoirType(Enum):
-    P96 = "corning_96_wellplate_360ul_flat"
+    R96 = "corning_96_wellplate_360ul_flat"
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
@@ -33,6 +33,7 @@ def run(protocol: protocol_api.ProtocolContext) -> None:
     left_pipette = protocol.load_instrument(
         PipetteType.P20, mount="left", tip_racks=[tip_rack]
     )
+    reservoir = protocol.load_labware(ReservoirType.R96, location=3)
     # right_pipette = protocol.load_instrument(
     #     PipetteType.P300, mount="right", tip_racks=[tip_rack]
     # )
